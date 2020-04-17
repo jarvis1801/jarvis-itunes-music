@@ -1,4 +1,4 @@
-package com.jarvis.itunesmusic.model.abstractclass
+package com.jarvis.itunesmusic.data.model.abstractclass
 
 import java.io.Serializable
 

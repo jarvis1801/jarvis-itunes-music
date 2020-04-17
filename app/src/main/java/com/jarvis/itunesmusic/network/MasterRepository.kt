@@ -7,12 +7,12 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-object MasterApi {
+class MasterRepository {
     private var mCompositeDisposable: CompositeDisposable = CompositeDisposable()
     private var apiService: MasterService = MasterService.retrofitService()
 
-    fun create(): MasterApi {
-        return this
+    companion object {
+        val instance: MasterRepository = MasterRepository()
     }
 
 

@@ -1,7 +1,7 @@
-package com.jarvis.itunesmusic.model
+package com.jarvis.itunesmusic.data.model
 
 import com.google.gson.annotations.SerializedName
-import com.jarvis.itunesmusic.model.abstractclass.Media
+import com.jarvis.itunesmusic.data.model.abstractclass.Media
 
 data class SongResult(
     @SerializedName("resultCount") val resultCount : Int,
