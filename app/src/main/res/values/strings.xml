@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">iTunes Music</string>
-    <string name="collection_name">Collection Name:</string>
-    <string name="track_name">Track Name:</string>
-    <string name="artist_name">Artist Name:</string>
+    <string name="searchHint">Artist Name, Track Name, Collection Name</string>
+    <string name="cannot_find_result">Cannot Find Result</string>
 </resources>

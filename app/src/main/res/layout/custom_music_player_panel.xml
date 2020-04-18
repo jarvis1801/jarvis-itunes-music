@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:apps="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#88000000"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/btnPlayPause"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        apps:layout_constraintTop_toTopOf="parent"
+        apps:layout_constraintLeft_toLeftOf="parent"
+        apps:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/baseline_play_arrow_black_48"
+        android:tint="#ffffff"
+        tools:ignore="ContentDescription"
+        />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        apps:layout_constraintTop_toBottomOf="@id/btnPlayPause"
+        apps:layout_constraintLeft_toLeftOf="parent"
+        apps:layout_constraintRight_toRightOf="parent"
+        style="@style/MusicPlayerPanelProgressBar"
+        tools:progress="25"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

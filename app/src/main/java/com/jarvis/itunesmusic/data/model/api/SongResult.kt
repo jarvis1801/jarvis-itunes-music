@@ -1,5 +1,8 @@
-package com.jarvis.itunesmusic.data.model
+package com.jarvis.itunesmusic.data.model.api
 
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 import com.google.gson.annotations.SerializedName
 import com.jarvis.itunesmusic.data.model.abstractclass.Media
 
@@ -40,4 +43,18 @@ data class Song(
     @SerializedName("currency") val currency : String,
     @SerializedName("primaryGenreName") val primaryGenreName : String,
     @SerializedName("isStreamable") val isStreamable : Boolean
-) : Media()
+) : Media() {
+    fun getArtistNameAndTrackName(): String {
+        return "$trackName - $artistName"
+    }
+
+    companion object {
+        @JvmStatic
+        @BindingAdapter("trackThumbnail")
+        fun loadThumbnail(view: ImageView, imageUrl: String) {
+            Glide.with(view.context)
+                .load(imageUrl)
+                .into(view)
+        }
+    }
+}
