@@ -4,7 +4,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.google.gson.annotations.SerializedName
-import com.jarvis.itunesmusic.data.model.abstractclass.Media
+import com.jarvis.itunesmusic.data.model.api.abstractclass.Media
 
 import javax.inject.Inject
 
