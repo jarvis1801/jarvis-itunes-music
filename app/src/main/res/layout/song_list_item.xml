@@ -8,9 +8,14 @@
         <variable
             name="song"
             type="com.jarvis.itunesmusic.data.model.api.Song"/>
+
+        <variable
+            name="songViewModel"
+            type="com.jarvis.itunesmusic.viewmodel.SongViewModel"/>
     </data>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"

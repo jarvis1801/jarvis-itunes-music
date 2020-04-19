@@ -6,12 +6,14 @@ import com.bumptech.glide.Glide
 import com.google.gson.annotations.SerializedName
 import com.jarvis.itunesmusic.data.model.abstractclass.Media
 
+import javax.inject.Inject
+
 data class SongResult(
     @SerializedName("resultCount") val resultCount : Int,
     @SerializedName("results") val results: MutableList<Song>
 )
 
-data class Song(
+data class Song @Inject constructor(
     @SerializedName("wrapperType") val wrapperType : String,
     @SerializedName("kind") val kind : String,
     @SerializedName("artistId") val artistId : Int,

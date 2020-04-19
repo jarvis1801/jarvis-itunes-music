@@ -6,14 +6,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class MasterRepository {
+class MasterRepository @Inject constructor() {
     private var mCompositeDisposable: CompositeDisposable = CompositeDisposable()
     private var apiService: MasterService = MasterService.retrofitService()
-
-    companion object {
-        val instance: MasterRepository = MasterRepository()
-    }
 
 
     fun dispose() {

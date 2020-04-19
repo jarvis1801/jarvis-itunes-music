@@ -11,11 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jarvis.itunesmusic.data.model.api.Song
 import com.jarvis.itunesmusic.ui.adapter.SongAdapter
 import com.jarvis.itunesmusic.ui.custom.SearchPanel
+import com.jarvis.itunesmusic.util.MusicPlayerHelper
 import com.jarvis.itunesmusic.viewmodel.SongViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity(), LifecycleOwner, SearchPanel.OnSearchBtnClickListener {
+class MainActivity : AppCompatActivity(), LifecycleOwner, SearchPanel.OnSearchBtnClickListener, SongAdapter.OnAdapterItemClickListener {
     private var viewModel: SongViewModel? = null
     private var songAdapter: SongAdapter? = null
 
@@ -50,11 +51,13 @@ class MainActivity : AppCompatActivity(), LifecycleOwner, SearchPanel.OnSearchBt
     }
 
     private fun observeViewModel() {
-        songAdapter = SongAdapter(mutableListOf())
+        songAdapter = SongAdapter(mutableListOf(), this)
         rList.layoutManager = LinearLayoutManager(this)
         rList.adapter = songAdapter
 
         viewModel!!.getSongMutableLiveData().observe(this, songListUpdateObserver)
+
+        // default fetch
         getSongList("apple", "25")
     }
 
@@ -63,15 +66,32 @@ class MainActivity : AppCompatActivity(), LifecycleOwner, SearchPanel.OnSearchBt
         viewModel!!.getSongList(term = term, limit = limit)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-
-        viewModel?.disposeRepository()
-    }
-
     override fun onSearchClick(term: String, limit: String) {
         songAdapter!!.songList.removeAll { true }
         songAdapter!!.notifyDataSetChanged()
         getSongList(term = term, limit = limit)
+    }
+
+    override fun onAdapterItemClick(song: Song) {
+        MusicPlayerHelper.instance.addMusicPlayerPanel(this, rootView, song)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        MusicPlayerHelper.instance.initMusicPlayer()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        MusicPlayerHelper.instance.releaseMusicPlayer()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        viewModel?.disposeRepository()
+        MusicPlayerHelper.instance.destroyMusicPlayer()
     }
 }

@@ -6,18 +6,27 @@ import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import com.jarvis.itunesmusic.data.model.api.Song
 import com.jarvis.itunesmusic.data.model.api.SongResult
+import com.jarvis.itunesmusic.di.component.DaggerSongViewModelComponent
 import com.jarvis.itunesmusic.network.MasterRepository
+import javax.inject.Inject
 
 class SongViewModel : ViewModel() {
     private var songList: MutableLiveData<MutableList<Song>> = MutableLiveData()
     private var errorCount = 0
 
+    @Inject
+    lateinit var masterRepository: MasterRepository
+
     companion object {
         private const val ERROR_LIMIT = 3
     }
 
+    init {
+        DaggerSongViewModelComponent.create().inject(this)
+    }
+
     fun getSongList(term: String, limit: String) {
-        MasterRepository.instance.getSearchResult(term = term, media = "music", entity = "song", limit = limit,
+        masterRepository.getSearchResult(term = term, media = "music", entity = "song", limit = limit,
             onComplete = {
 
             },
@@ -48,6 +57,6 @@ class SongViewModel : ViewModel() {
     }
 
     fun disposeRepository() {
-        MasterRepository.instance.dispose()
+        masterRepository.dispose()
     }
 }

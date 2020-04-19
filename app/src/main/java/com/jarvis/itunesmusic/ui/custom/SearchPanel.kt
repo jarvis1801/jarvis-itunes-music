@@ -34,10 +34,6 @@ class SearchPanel @JvmOverloads constructor(context: Context, attrs: AttributeSe
         mOnSearchBtnClickListener = onSearchBtnClickListener
     }
 
-    fun release() {
-        // todo
-    }
-
     interface OnSearchBtnClickListener {
         fun onSearchClick(term: String, limit: String)
     }
