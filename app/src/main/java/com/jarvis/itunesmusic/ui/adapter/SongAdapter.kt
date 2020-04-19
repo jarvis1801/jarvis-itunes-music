@@ -46,6 +46,11 @@ class SongAdapter(var songList: MutableList<Song>, private val onAdapterItemClic
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(mSongListItemBinding.song!!.trackViewUrl))
                 context.startActivity(browserIntent)
             }
+
+            itemView.textCollectionName.setOnClickListener {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(mSongListItemBinding.song!!.collectionViewUrl))
+                context.startActivity(browserIntent)
+            }
         }
 
     }

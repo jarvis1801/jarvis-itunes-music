@@ -3,7 +3,6 @@ package com.jarvis.itunesmusic.util
 import android.content.Context
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
-import com.jarvis.itunesmusic.network.service.MasterService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.TimeUnit

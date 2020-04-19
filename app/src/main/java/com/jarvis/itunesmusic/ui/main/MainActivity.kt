@@ -37,8 +37,6 @@ class MainActivity : BaseActivity(), LifecycleOwner, SearchPanel.OnSearchBtnClic
                 Toast.makeText(this,
                     R.string.cannot_find_result, Toast.LENGTH_LONG).show()
             }
-            Toast.makeText(this,
-                "${songArrayList.size}", Toast.LENGTH_SHORT).show()
             isLoading = false
         }
 
