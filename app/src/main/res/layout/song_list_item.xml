@@ -58,8 +58,6 @@
                     apps:layout_constraintLeft_toLeftOf="parent"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:marqueeRepeatLimit="marquee_forever"
-                    android:scrollHorizontally="true"
                     android:text="@{song.artistNameAndTrackName}"
                     tools:text="Upside Down - Jack Johnson"
                     style="@android:style/TextAppearance.Medium"
