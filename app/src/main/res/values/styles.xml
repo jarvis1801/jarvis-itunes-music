@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MusicPlayerPanelProgressBar" parent="@android:style/Widget.Holo.Light.ProgressBar.Horizontal">
+        <item name="android:progressTint">@android:color/white</item>
+        <item name="android:thumbTint">@android:color/white</item>
+    </style>
+
 </resources>

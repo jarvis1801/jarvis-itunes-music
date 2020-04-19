@@ -1,14 +1,19 @@
-package com.jarvis.itunesmusic.model
+package com.jarvis.itunesmusic.data.model.api
 
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 import com.google.gson.annotations.SerializedName
-import com.jarvis.itunesmusic.model.abstractclass.Media
+import com.jarvis.itunesmusic.data.model.api.abstractclass.Media
+
+import javax.inject.Inject
 
 data class SongResult(
     @SerializedName("resultCount") val resultCount : Int,
     @SerializedName("results") val results: MutableList<Song>
 )
 
-data class Song(
+data class Song @Inject constructor(
     @SerializedName("wrapperType") val wrapperType : String,
     @SerializedName("kind") val kind : String,
     @SerializedName("artistId") val artistId : Int,
@@ -40,4 +45,18 @@ data class Song(
     @SerializedName("currency") val currency : String,
     @SerializedName("primaryGenreName") val primaryGenreName : String,
     @SerializedName("isStreamable") val isStreamable : Boolean
-) : Media()
+) : Media() {
+    fun getArtistNameAndTrackName(): String {
+        return "$trackName - $artistName"
+    }
+
+    companion object {
+        @JvmStatic
+        @BindingAdapter("trackThumbnail")
+        fun loadThumbnail(view: ImageView, imageUrl: String) {
+            Glide.with(view.context)
+                .load(imageUrl)
+                .into(view)
+        }
+    }
+}
