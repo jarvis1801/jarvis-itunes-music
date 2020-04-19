@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.FrameLayout
 import android.widget.SeekBar
 import com.bumptech.glide.Glide
@@ -160,7 +161,10 @@ class MusicPlayerPanel @JvmOverloads constructor(context: Context, attrs: Attrib
 
     override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
         when (playbackState) {
-            ExoPlayer.STATE_READY -> textTotalTime.text = formatSongTime(player!!.duration)
+            ExoPlayer.STATE_READY -> {
+                loading.visibility = View.GONE
+                textTotalTime.text = formatSongTime(player!!.duration)
+            }
             ExoPlayer.STATE_ENDED -> {
                 textCurrentTime.text = formatSongTime(player!!.duration)
                 playbackPosition = 0L
@@ -168,7 +172,10 @@ class MusicPlayerPanel @JvmOverloads constructor(context: Context, attrs: Attrib
                     initPlayer(mSong!!, true)
                 }
             }
-            ExoPlayer.STATE_BUFFERING, ExoPlayer.STATE_IDLE -> {}
+            ExoPlayer.STATE_BUFFERING -> {
+                loading.visibility = View.VISIBLE
+            }
+            ExoPlayer.STATE_IDLE -> {}
         }
     }
 
